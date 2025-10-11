@@ -11,7 +11,7 @@ from common.log import Logger
 from mpmath import fp
 from mpmath.calculus.quadrature import TanhSinh, GaussLegendre, QuadratureRule    
 from cmath import *
-import pdb
+import functools
 
 #--- Inversion utilities
 
@@ -230,6 +230,8 @@ GL=GaussLegendre(fp)
 quadratures_by_key={'CC':CC,'GL':GL,'TS':TS}
 prec=4
 
+
+#@functools.lru_cache(maxsize=3)  # Likely to be called often with the same arguments
 def GetQuadrature(N=72,xmin=1e-3,xmax=numpy.inf,\
                   quadrature=GL,**kwargs):
     
@@ -1561,9 +1563,9 @@ def Synchronize2DImages(images,within_pts=True,fontsize=14,prefer_BC=False,cmap=
     from matplotlib import pyplot as plt
     from common.plotting import PointPicker
     
-    Logger.raiseException('Input `images` must be a list of 2-D arrays of length 2 or greater.',\
-                          unless=(len(images)>=2 and isinstance(images[0],numpy.ndarray) and \
-                                  False not in [image.ndim==2 for image in images]),\
+    Logger.raiseException('Input `images` must be a list of 2-D arrays of length 2 or greater.', \
+                          unless=(len(images) >= 2 and isinstance(images[0],numpy.ndarray) and \
+                                  False not in [image.ndim == 2 for image in images]), \
                           exception=TypeError)
                 
     def inherit_lines_and_texts(ax,lines,texts):

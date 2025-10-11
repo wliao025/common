@@ -1312,7 +1312,7 @@ try:
                 axes=to_plot.get_axes()
                 axis_names=to_plot.get_axis_names()
             
-            if to_plot.ndim in [1,2]:
+            if to_plot.ndim in [1, 2]:
                 try: from matplotlib import pyplot
                 except ImportError:
                     Logger.raiseException('Plotting of 1- and 2-D coordinate slices is unavailable because '+\

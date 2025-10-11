@@ -226,6 +226,7 @@ def is_iterable(item,protect=[str]):
     try: iter(item); return True
     except TypeError: return False
 
+"""
 def flatten(l, ltypes=(list, tuple)):
     
     ltype = type(l)
@@ -242,6 +243,14 @@ def flatten(l, ltypes=(list, tuple)):
                 l[i:i + 1] = l[i]
         i += 1
     return ltype(l)
+"""
+
+def flatten(L):
+    for item in L:
+        try:
+            yield from flatten(item)
+        except TypeError:
+            yield item
 
 def apply_to_array(func,*inputs,**args):
     """

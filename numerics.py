@@ -64,7 +64,7 @@ def bin_array(arr,bins=200,weights=None,density=False):
 def shear_array(a, strength=1, shear_axis=1, increase_axis=None,interpolate=False):
     
     Logger.raiseException('The dimension of `a` must be at least 2.',
-                          unless=(a.ndim>=2), exception=TypeError)
+                          unless=(a.ndim >= 2), exception=TypeError)
     Logger.raiseException('`shear_axis` and `increase_axis` must be distinct.',
                           unless=(shear_axis!=increase_axis), exception=ValueError)
     
@@ -76,8 +76,8 @@ def shear_array(a, strength=1, shear_axis=1, increase_axis=None,interpolate=Fals
     
     if interpolate:
         Logger.raiseException('The `interpolate` option is only enabled for \
-                               an array `a` of dimension 2.',\
-                               unless=a.ndim==2, exception=IndexError)
+                               an array `a` of dimension 2.', \
+                              unless=a.ndim == 2, exception=IndexError)
         arr=baseclasses.AWA(a)
         xs=arr.axes[shear_axis]
         get_ind=lambda y: (y,slice(None)) if shear_axis==1 else (slice(None),y)
@@ -538,7 +538,7 @@ def slice_array_by_value(value,x,arr,axis=0,squeeze=True,get_closest=False):
     #####Find most appropriate index#####
     closest_index=value_to_index(value,x)
     axis=axis%arr.ndim
-    limits=[None]*axis+[closest_index]+[None]*(arr.ndim-axis-1)
+    limits=[None]*axis+[closest_index]+[None]*(arr.ndim - axis - 1)
     
     #####Slice the array#####
     sliced_arr=get_array_slice(arr,limits,squeeze=squeeze)
