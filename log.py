@@ -146,7 +146,7 @@ def trace(frame=None,external=True,up=0,indent='  '):
     try: del frame; del code
     except NameError: pass
         
-    if trace_str is '': trace_str='--No trace available.--'
+    if trace_str == '': trace_str='--No trace available.--'
     return trace_str
 
 LogLevelNames=['debug',\
